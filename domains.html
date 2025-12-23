@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internship Domain Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif;margin:0;padding:40px 20px;color:#111827}
+h1{text-align:center;margin-bottom:50px;font-size:2.2rem}
+.container{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.card{background:#fff;padding:25px;border-radius:18px;box-shadow:0 20px 45px rgba(0,0,0,0.18);transition:transform 0.3s ease}
+.card:hover{transform:translateY(-10px)}
+.status{font-weight:600;padding:6px 14px;border-radius:999px;font-size:.85rem;display:inline-block}
+.offering{background:#dcfce7;color:#166534}
+.not-offering{background:#fee2e2;color:#991b1b}
+.pending-approval{background:#fff7ed;color:#92400e}
+select{width:100%;padding:9px;margin-top:6px;border-radius:8px;border:1px solid #d1d5db}
+button{width:100%;padding:12px;margin-top:15px;border:none;border-radius:10px;font-weight:600;background:linear-gradient(135deg,#2563eb,#1e40af);color:white;cursor:pointer}
+button:disabled{background:#d1d5db;cursor:not-allowed}
+.slots{font-size:.9rem;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>Professional Internship Listings</h1>
+<div class="container" id="companiesContainer"></div>
+<script>
+fetch("http://127.0.0.1:5000/internships")
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById("companiesContainer");
+    const companiesMap = {};
+
+    data.forEach(i => {
+        if (!companiesMap[i.company_name])
+            companiesMap[i.company_name] = { name: i.company_name, domains: {}, status: "Offering" };
+        companiesMap[i.company_name].domains[i.domain] = i.slots;
+    });
+
+    Object.values(companiesMap).forEach((company, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const options = Object.keys(company.domains).map(d => 
+            `<option value="${d}" ${company.domains[d]===0 ? "disabled" : ""}>${d}</option>`
+        ).join("");
+
+        card.innerHTML = `
+            <h2>${company.name}</h2>
+            <p>Domains:</p>
+            <select id="domainSelect-${index}">
+              <option value="">Select Domain</option>${options}
+            </select>
+            <p class="slots">Slots: -</p>
+            <span class="status offering">${company.status}</span>
+            <button id="applyBtn-${index}" ${Object.values(company.domains).every(s=>s===0)?"disabled":""}>Apply Now</button>
+        `;
+        container.appendChild(card);
+
+        const selectEl = document.getElementById(`domainSelect-${index}`);
+        const slotsEl = card.querySelector(".slots");
+
+        selectEl.addEventListener("change", () => {
+            const domain = selectEl.value;
+            slotsEl.textContent = domain ? `Slots: ${company.domains[domain]}` : "Slots: -";
+        });
+
+        const applyBtn = document.getElementById(`applyBtn-${index}`);
+        applyBtn.addEventListener("click", () => {
+            const domain = selectEl.value;
+            if (!domain) { alert("Select domain first."); return; }
+            window.location.href = `application.html?company=${encodeURIComponent(company.name)}&domain=${encodeURIComponent(domain)}`;
+        });
+    });
+});
+
+</script>
+</body>
+</html>

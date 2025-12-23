@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Internship Hub</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #e0e7ff, #f0f4f8);
+    color: #111;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Floating Background Images */
+.bg-image {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.15;
+    animation: floatBg 12s ease-in-out infinite;
+}
+
+.bg-image:nth-child(1) { top: 50px; left: 30px; animation-delay: 0s; }
+.bg-image:nth-child(2) { top: 300px; right: 60px; animation-delay: 2s; }
+.bg-image:nth-child(3) { bottom: 100px; left: 200px; animation-delay: 4s; }
+.bg-image:nth-child(4) { top: 150px; left: 50%; animation-delay: 1s; transform: translateX(-50%);}
+.bg-image:nth-child(5) { bottom: 200px; right: 100px; animation-delay: 3s;}
+.bg-image:nth-child(6) { top: 400px; left: 100px; animation-delay: 5s;}
+
+@keyframes floatBg {
+    0% { transform: translateY(0px) rotate(0deg);}
+    50% { transform: translateY(-20px) rotate(5deg);}
+    100% { transform: translateY(0px) rotate(0deg);}
+}
+
+/* Header */
+.hero {
+    padding: 140px 20px 80px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+    font-size: 60px;
+    font-family: 'Roboto Slab', serif;
+    background: linear-gradient(90deg, #2563eb, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(40px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Glass Cards */
+.glass-card {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    margin: 40px 0;
+    border-radius: 24px;
+    animation: fadeUp 1.4s ease;
+}
+
+.glass-card h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: #1e3a8a;
+    font-family: 'Roboto Slab', serif;
+}
+
+.glass-card p {
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+@keyframes fadeUp {
+    0% { opacity:0; transform: translateY(60px);}
+    100% { opacity:1; transform: translateY(0);}
+}
+
+/* 3D Tilt Cards */
+.values,
+.certificates,
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+    margin-top: 20px;
+}
+
+.value-card,
+.certificate-card,
+.review-card {
+    padding: 24px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+.value-card:hover,
+.certificate-card:hover,
+.review-card:hover {
+    transform: translateY(-10px) rotateX(8deg) rotateY(8deg);
+}
+
+.value-card h3,
+.certificate-card h3,
+.review-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #2563eb;
+}
+
+/* Stats Section */
+.stats {
+    margin: 60px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat-box {
+    width: 260px;
+    padding: 32px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(0,0,0,0.1);
+    backdrop-filter: blur(20px);
+    text-align: center;
+    transition: 0.2s;
+}
+
+.stat-box:hover { transform: translateY(-8px); }
+
+.stat-box h3 {
+    font-size: 42px;
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    opacity: 0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Floating Background Images -->
+<img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" class="bg-image" alt="Student">
+<img src="https://cdn-icons-png.flaticon.com/512/1995/1995582.png" class="bg-image" alt="Student">
+<img src="https://cdn-icons-png.flaticon.com/512/1827/1827520.png" class="bg-image" alt="Computer">
+<img src="https://cdn-icons-png.flaticon.com/512/3022/3022013.png" class="bg-image" alt="Books">
+<img src="https://cdn-icons-png.flaticon.com/512/809/809957.png" class="bg-image" alt="Chart">
+<img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" class="bg-image" alt="Laptop">
+
+<!-- HEADER -->
+<section class="hero">
+<h1>About Internship Hub</h1>
+<p>Empowering students with verified internships, real-world certificates, and a smarter career-building platform.</p>
+</section>
+
+<div class="container">
+
+<div class="glass-card">
+<h2>Who We Are</h2>
+<p>
+Internship Hub is a next-generation platform designed to provide verified internships, valuable certificates, and real-time industry projects to students all over the world. We help build confidence, skills, and high-quality experience.
+</p>
+</div>
+
+<div class="glass-card">
+<h2>Companies We Are Linked With</h2>
+<p>
+Internship Hub collaborates with top multinational companies to ensure students receive high-quality internship opportunities and verified certificates.
+</p>
+
+<div class="values">
+<div class="value-card"><h3>🏢 TCS</h3><p>India’s leading IT giant offering global internship exposure.</p></div>
+<div class="value-card"><h3>💼 Wipro</h3><p>Leading tech solutions provider offering future-ready roles.</p></div>
+<div class="value-card"><h3>🖥 HCLTech</h3><p>Hands-on learning in IT services, cloud, data, and cybersecurity.</p></div>
+<div class="value-card"><h3>⚙ Tech Mahindra</h3><p>Real-world learning in AI, telecom, automation, and more.</p></div>
+<div class="value-card"><h3>🌐 Accenture</h3><p>World-class digital transformation and consulting internships.</p></div>
+</div>
+</div>
+
+<div class="glass-card">
+<h2>Certificates You Can Earn</h2>
+<p>We provide certificates for every domain you need—designed to strengthen your resume and professional profile.</p>
+
+<div class="certificates">
+<div class="certificate-card"><h3>🏅 Completion Certificates</h3><p>Earn a certificate for finishing any internship or training.</p></div>
+<div class="certificate-card"><h3>📜 Skill-Based Certificates</h3><p>Get certificates in AI, Web Dev, Data Science, ML, Cloud, UI/UX, and more.</p></div>
+<div class="certificate-card"><h3>🏆 Excellence Certificates</h3><p>Awarded for top-performing students in internships & projects.</p></div>
+</div>
+</div>
+
+<div class="glass-card">
+<h2>Our Mission</h2>
+<p>To deliver verified internships, valuable certifications, industry learning, and a strong career foundation for every student.</p>
+</div>
+
+<div class="stats">
+<div class="stat-box"><h3>1000+</h3><p>Internships Published</p></div>
+<div class="stat-box"><h3>25K+</h3><p>Active Students</p></div>
+<div class="stat-box"><h3>200+</h3><p>Partner Companies</p></div>
+<div class="stat-box"><h3>4.9★</h3><p>Student Rating</p></div>
+</div>
+
+</div>
+
+<footer>
+© 2025 Internship Hub — Verified Internships. Valuable Certificates. Real Opportunities.
+</footer>
+
+</body>
+</html>

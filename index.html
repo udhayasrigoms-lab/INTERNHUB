@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>InternHub — Home</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --royal-navy:#0F1B4C;
+  --royal-blue:#1E3A8A;
+  --royal-gold:#D4AF37;
+  --ivory:#FAFAFA;
+  --muted:#475569;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  height:100%;
+  font-family:Inter,system-ui;
+  background:
+    linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+    url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d");
+  background-size:cover;
+  background-attachment:fixed;
+  overflow-x:hidden;
+  color:#0f172a;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1150px,94%);
+  margin:auto;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:9999; /* FIX */
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.6);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:Poppins;
+  font-size:20px;
+  font-weight:800;
+  color:var(--royal-navy);
+}
+
+.logo .mark{
+  width:42px;
+  height:42px;
+  background:linear-gradient(135deg,var(--royal-navy),var(--royal-blue));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(15,27,76,0.4);
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  padding:12px 26px;
+  border-radius:14px;
+  font-weight:600;
+  letter-spacing:0.3px;
+  color:white;
+  background:linear-gradient(135deg,var(--royal-navy),var(--royal-blue));
+  border:none;
+  cursor:pointer;
+  transition:all 0.35s ease;
+  box-shadow:0 10px 30px rgba(15,27,76,0.35);
+  position:relative;
+  overflow:hidden;
+}
+
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.35),transparent);
+  transform:translateX(-100%);
+  transition:0.6s;
+  pointer-events: none;
+}
+
+.btn:hover::after{
+  transform:translateX(100%);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 45px rgba(15,27,76,0.5);
+}
+
+.btn.gold{
+  background:linear-gradient(135deg,#b8962e,var(--royal-gold));
+  color:#1a1a1a;
+  box-shadow:0 10px 30px rgba(212,175,55,0.45);
+}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  padding-top:90px;
+}
+
+/* 🔥 IMPORTANT FIX */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("https://img.freepik.com/free-vector/internship-job-concept_23-2148721817.jpg?semt=ais_hybrid&w=740&q=80");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.75);
+  z-index:0;
+  pointer-events:none; /* FIXED CLICK ISSUE */
+}
+
+.hero-content{
+  position:relative;
+  max-width:650px;
+  z-index:2;
+}
+
+.hero h1{
+  font-family:Poppins;
+  font-size:clamp(34px,5vw,60px);
+  line-height:1.1;
+  color:var(--royal-navy);
+  margin-bottom:18px;
+}
+
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+  margin-bottom:28px;
+}
+
+.hero-buttons{
+  display:inline-block;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero-content{max-width:100%;}
+  .hero-buttons{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav-inner">
+    <div class="logo">
+      <div class="mark">IH</div>
+      InternHub
+    </div>
+    <div class="nav-buttons">
+      <a href="domains.html" class="btn">Domains</a>
+      <a href="about.html" class="btn gold">About</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Launch your career with InternHub</h1>
+      <p>
+        Project-based internships • Mentor-led tasks •  
+        Royal-grade certifications trusted by employers.
+        5000+ Students trusted.
+      </p>
+      <div class="hero-buttons">
+        <a href="domains.html" class="btn">Explore Domains</a>
+        <a href="about.html" class="btn gold">Learn About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Application | InternHub</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1A2B6D, #5A3ECA);
+      font-family: Inter, system-ui;
+    }
+
+    .form-card {
+      width: 100%;
+      max-width: 720px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 14px;
+      margin: 8px 0 24px;
+    }
+
+    .info-box {
+      background: #F3F4F6;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 26px 0 10px;
+      color: #1A2B6D;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin: 14px 0 6px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid #D1D5DB;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #5A3ECA;
+    }
+
+    textarea {
+      resize: none;
+      height: 90px;
+    }
+
+    .row {
+      display: flex;
+      gap: 14px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .btn {
+      margin-top: 26px;
+      width: 100%;
+      padding: 14px;
+      background: #1A2B6D;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #14235a;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 12px;
+      color: #6B7280;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-card">
+    <h1>Internship Application</h1>
+    <p class="subtitle">Apply professionally through InternHub</p>
+
+    <div class="info-box" id="info">Loading internship details...</div>
+
+    <form id="internForm">
+
+      <div class="section-title">Personal Information</div>
+
+      <div class="row">
+        <div>
+          <label>Full Name *</label>
+          <input type="text" name="fullname" required>
+        </div>
+        <div>
+          <label>Email Address *</label>
+          <input type="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Phone Number *</label>
+          <input type="tel" name="phone" required>
+        </div>
+        <div>
+          <label>Gender</label>
+          <select name="gender">
+            <option value="">Select</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-title">Academic Details</div>
+
+      <label>College / University *</label>
+      <input type="text" name="college" required>
+
+      <div class="row">
+        <div>
+          <label>Department *</label>
+          <input type="text" name="department" required>
+        </div>
+        <div>
+          <label>Year of Study *</label>
+          <select name="year" required>
+            <option value="">Select</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-title">Skills & Availability</div>
+
+      <label>Technical Skills</label>
+      <input type="text" name="skills">
+
+      <div class="row">
+        <div>
+          <label>Internship Duration *</label>
+          <select name="duration" required>
+            <option value="">Select</option>
+            <option>2 Weeks</option>
+            <option>4 Weeks</option>
+            <option>6 Weeks</option>
+            <option>8 Weeks</option>
+          </select>
+        </div>
+        <div>
+          <label>Mode *</label>
+          <select name="mode" required>
+            <option value="">Select</option>
+            <option>Online</option>
+            <option>Offline</option>
+            <option>Hybrid</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-title">Statement of Purpose</div>
+
+      <label>Why do you want this internship? *</label>
+      <textarea name="reason" required></textarea>
+
+      <label>Upload Resume (PDF only)</label>
+      <input type="file" accept=".pdf">
+
+      <div class="checkbox">
+        <input type="checkbox" required>
+        <span>I declare that the information provided is true.</span>
+      </div>
+
+      <button class="btn" type="button" id="submitBtn">
+        Submit Application
+      </button>
+
+    </form>
+
+    <p class="note">Shortlisted candidates will be contacted via email.</p>
+  </div>
+
+  <script>
+    // GET COMPANY & DOMAIN FROM URL
+    const params = new URLSearchParams(window.location.search);
+    const companyName = params.get("company");
+    const domainName = params.get("domain");
+
+    if (!companyName || !domainName) {
+      alert("Invalid internship");
+      window.location.href = "domain.html";
+    }
+
+    // GET LOGGED-IN USER
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (!loggedInUser) {
+      alert("Please login first");
+      window.location.href = "login.html";
+    }
+
+    // SHOW INTERNSHIP INFO
+    document.getElementById("info").innerHTML =
+      `<strong>Company:</strong> ${companyName}<br>
+       <strong>Domain:</strong> ${domainName}`;
+
+    // PREFILL USER INFO
+    document.querySelector('[name="fullname"]').value =
+      loggedInUser.firstName + " " + loggedInUser.lastName;
+    document.querySelector('[name="email"]').value =
+      loggedInUser.email;
+
+    // SUBMIT FORM
+    document.getElementById("submitBtn").addEventListener("click", async function () {
+      try {
+        const response = await fetch("http://127.0.0.1:5000/apply", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            company: companyName,
+            domain: domainName,
+            student_name: loggedInUser.firstName + " " + loggedInUser.lastName,
+            email: loggedInUser.email
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          alert(result.error || "Something went wrong");
+          return;
+        }
+
+        // SUCCESS → REDIRECT
+        window.location.replace("domains.html");
+
+      } catch (err) {
+        alert("Server error");
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>

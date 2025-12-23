@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InternsHub | Login & Signup</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(10,20,60,0.85), rgba(10,20,60,0.85)),
+    url("https://images.unsplash.com/photo-1522071820081-009f0129c71c");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 60px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+  color:#1A2B6D;
+}
+
+.nav-actions button{
+  padding:10px 22px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  margin-left:12px;
+}
+
+.login-btn{
+  background:transparent;
+  border:2px solid #1A2B6D;
+  color:#1A2B6D;
+}
+
+.signup-btn{
+  background:#1A2B6D;
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:90px 70px;
+  color:#fff;
+}
+
+.hero-text{
+  max-width:600px;
+}
+
+.hero-text h1{
+  font-size:46px;
+  line-height:1.2;
+}
+
+.hero-text p{
+  margin-top:18px;
+  font-size:18px;
+  opacity:0.92;
+}
+
+.hero-text ul{
+  margin-top:22px;
+  list-style:none;
+}
+
+.hero-text ul li{
+  margin-bottom:10px;
+  font-size:16px;
+}
+
+.hero-text ul li::before{
+  content:"✔ ";
+  color:#ffd700;
+  font-weight:700;
+}
+
+/* HERO IMAGE */
+.hero-img img{
+  width:420px;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+  100%{transform:translateY(0)}
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.65);
+  z-index:200;
+}
+
+.modal-box{
+  width:400px;
+  background:#fff;
+  padding:32px;
+  border-radius:16px;
+  animation:zoom 0.3s ease;
+  position:relative;
+}
+
+@keyframes zoom{
+  from{transform:scale(0.88);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.modal-box h2{
+  text-align:center;
+  margin-bottom:22px;
+  color:#1A2B6D;
+}
+
+.modal-box input,
+.modal-box select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+.modal-box button{
+  width:100%;
+  padding:13px;
+  background:#1A2B6D;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  margin-top:18px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.close{
+  position:absolute;
+  top:14px;
+  right:18px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{
+    flex-direction:column;
+    text-align:center;
+    padding:70px 30px;
+  }
+  .hero-img img{
+    width:300px;
+    margin-top:35px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">InternsHub</div>
+  <div class="nav-actions">
+    <button class="login-btn" onclick="openLogin()">Login</button>
+    <button class="signup-btn" onclick="openSignup()">Sign Up</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Where Students Become Industry-Ready 🚀</h1>
+    <p>
+      InternsHub connects ambitious students with verified companies,
+      hands-on internships, and career-building opportunities.
+    </p>
+
+    <ul>
+      <li>Trusted by students from top engineering colleges</li>
+      <li>Industry-verified internship programs</li>
+      <li>Skill-based learning with real projects</li>
+      <li>Certificates valued by recruiters</li>
+    </ul>
+  </div>
+
+  <div class="hero-img">
+    <img src="https://assets.designtemplate.io/Cartoon-Student-with-Laptop-Online-Learning-Environment-Illustration-700.webp">
+  </div>
+</section>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-box">
+    <span class="close" onclick="closeLogin()">×</span>
+    <h2>Welcome Back</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="loginUser()">Login</button>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal" id="signupModal">
+  <div class="modal-box">
+    <span class="close" onclick="closeSignup()">×</span>
+    <h2>Create Your Account</h2>
+    <input type="text" id="firstName" placeholder="First Name">
+    <input type="text" id="lastName" placeholder="Last Name">
+    <input type="email" id="signupEmail" placeholder="Email">
+    <input type="password" id="signupPassword" placeholder="Password">
+    <button onclick="signupUser()">Sign Up</button>
+  </div>
+</div>
+
+<script>
+function openLogin(){ loginModal.style.display="flex"; }
+function closeLogin(){ loginModal.style.display="none"; }
+function openSignup(){ signupModal.style.display="flex"; }
+function closeSignup(){ signupModal.style.display="none"; }
+
+/* SIGNUP */
+function signupUser(){
+  const user = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: signupEmail.value,
+    password: signupPassword.value
+  };
+
+  if(!user.firstName || !user.lastName || !user.email || !user.password){
+    alert("Please fill all fields");
+    return;
+  }
+
+  fetch("http://127.0.0.1:5000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error){
+      alert(data.error);
+    } else {
+      alert("Signup successful!");
+      window.location.href = "index.html";
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Server error");
+  });
+}
+
+/* LOGIN */
+function loginUser(){
+  const user = {
+    email: loginEmail.value,
+    password: loginPassword.value
+  };
+
+  if(!user.email || !user.password){
+    alert("Please enter email & password");
+    return;
+  }
+
+  fetch("http://127.0.0.1:5000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error){
+      alert(data.error);
+    }else{
+      alert("Login successful!");
+      sessionStorage.setItem("loggedInUser", JSON.stringify(data.user));
+      window.location.href = "index.html";
+    }
+  })
+  .catch(err => {
+    alert("Server error");
+    console.error(err);
+  });
+}
+</script>
+</body>
+</html>
